@@ -33,5 +33,23 @@ bool USessionMenuWidget::CreateRoom(FString RoomName)
 
     // 作成要求が受け付けられたとき true
     return Sub && Sub->CreateSession(RoomName, 3);
+
+   
+
 }
 
+// ファイルの一番下に追加してください
+
+void USessionMenuWidget::SearchRooms()
+{
+    if (!GetGameInstance())
+    {
+        return;
+    }
+
+    auto* Sub = GetGameInstance()->GetSubsystem<USessionSubsystem>();
+    if (Sub)
+    {
+        Sub->FindSessions(); // もしSubsystem側に検索関数があれば呼び出す
+    }
+}
